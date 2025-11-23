@@ -1,105 +1,143 @@
- A* Pathfinding & Motion Simulation on the Romania Map
-1️. Objective
+ Path-Navigation of Autonomous Agents using Artificial Intelligence
 
-The objective of this project is to develop an intelligent route-planning system that identifies the shortest path between cities using the A* search algorithm.
-Once the optimal route is found, the project simulates motion parameters such as velocity, acceleration, and rotation to show how a robot or autonomous vehicle might behave while traveling along that path.
+ 1️. Objective
 
-The project combines AI pathfinding and basic motion modeling to provide both an optimal route and a visual representation of movement dynamics.
+This project simulates how an autonomous agent navigates through a dynamic environment. The goal is to use the **A*** search algorithm to find an efficient route in a grid world — taking into account static obstacles, high-cost zones, and moving cars.
+The focus is on real-time decision-making and adaptive behaviour when the environment changes during execution.
 
-2️. Environment
+ 2️.Environment
 
-The project is built in a Python environment and uses:
+The simulation is built on a **20 × 20** grid. Each cell models a road segment with a specific type and cost.
 
-A predefined Romania map graph (cities and road distances)
+**Grid Components**
 
-Heuristic values (straight-line distances to Bucharest)
+* **Normal Road** — cost = 1
+* **Static Traffic Zone** — cost = 5
+* **Roadblock** — impassable
+* **Moving Cars** — dynamic obstacles that shift each step
 
-Randomized motion values for each path segment
+**Behaviour**
 
-Numpy for numerical operations
+* Moving cars update their positions at each time step.
+* The agent follows the pre-computed A* path.
+* If a moving car blocks the agent’s next target cell, the simulation halts or re-plans.
+* A real-time visual update shows the agent’s progress and environment changes.
 
-Matplotlib for plotting and analysis
+ **Libraries Used**
 
-Heapq for priority queue management in A*
+* NumPy — for grid representation and logic
+* Matplotlib — for visualization & animation
+* Random — to simulate moving obstacle behaviour
+* heapq — for A* priority queue implementation
+* IPython.display — for animation support in notebook environments
 
-The environment is static — there are no moving obstacles or real-time updates.
-The focus is entirely on:
 
-Optimal route discovery
 
-Motion behavior visualization
+ 3️. Algorithm Used — A* Pathfinding
 
-3️. Algorithm Used — A* Search
+The core path-planning module uses the A* algorithm to compute a least-cost path from start to goal.
 
-The A* algorithm is used to compute the shortest route between two cities.
+**Key Features**
 
-Why A*?
+* Uses **Manhattan distance** as the heuristic
+* Avoids:
 
-Because it uses both:
+  * Roadblocks
+  * Cells currently occupied by moving cars
+  * Cells with high traffic cost (to reduce overall travel cost)
+* Employs a **priority queue (heapq)** to explore nodes by minimum (f + g) cost
+* When the goal is reached, the path is reconstructed from goal → start
 
-g(n): the cost already traveled
+**Dynamic Component**
 
-h(n): the estimated cost to the goal
-and finds the most cost-effective path.
+* During execution, moving cars may shift into the agent’s path.
+* If the next step is blocked by a dynamic obstacle, the simulation halts or triggers a response.
+* Visualization refreshes each step, showing agent movement and environment updates.
 
-Key Steps in the Algorithm
 
-Start from the initial city
-
-Select the best neighbor using f = g + h
-
-Expand the node with the lowest f-value
-
-Continue until Bucharest is reached
-
-Reconstruct the path
-
-After obtaining the route, the project generates:
-
-A velocity value for each segment
-
-An acceleration value
-
-A rotation rate (turning angle)
-These mimic physical movement and give each path segment unique motion behavior.
 
 4️. Results
-✔️ Path Found
 
-The algorithm successfully finds the shortest path to Bucharest.
-Example output:
+ ✔️ Path Planning Success
 
-Arad -> Sibiu -> Rimnicu Vilcea -> Pitesti -> Bucharest
-Total Cost: 418
+The system generates:
 
-✔️ Motion Parameters Generated
+* A valid starting location
+* A valid goal location
+* An optimal path computed by A* that respects costs and avoids obstacles
 
-For every transition between cities, the system generates:
+ ✔️ Real-Time Navigation
 
-Velocity (5–15 m/s)
+During the simulation:
 
-Acceleration (0.1–2.0 m/s²)
+* Each step is displayed visually on the grid
+* Moving cars continue to update
+* Two outcomes are possible:
 
-Rotation rate (−30° to +30°)
+  * 🎯 The agent reaches the goal successfully
+  * ⛔ The agent’s path is blocked by a moving car
 
-✔️ Visualization
+ ✔️ Visual Output
 
-A Matplotlib plot is created showing the three motion parameters across the path transitions.
-This allows easy analysis of:
+The visualization shows:
 
-Speed variations
-
-Acceleration patterns
-
-Turning behavior
-
-It provides a clear picture of simulated robot motion along the optimal route.
-
-6. How to Run This Project
- ▶ Run in Google Colab (Recommended)
-1. Open the notebook in Google Colab  
-2. Click **Runtime → Run all**  
-3. All results (path, plots, motion graphs) will appear automatically  
+* The grid with different cell types and colours
+* Static traffic zones and roadblocks
+* Moving cars
+* The planned path drawn in black
+* Start and goal markers
+* A step-by-step animation (e.g., one frame every ~0.5 seconds)
 
 
 
+ 5️. How to Run the Project
+
+▶️ Running in Google Colab
+
+1. Open the notebook in Google Colab.
+2. Run all cells.
+3. The script will:
+
+   * Generate the grid
+   * Choose start & goal
+   * Compute the A* path
+   * Animate the agent’s movement
+4. The notebook uses `clear_output()` (or similar) to update frames.
+
+💻 Running Locally
+
+Install dependencies:
+
+```bash
+pip install numpy matplotlib
+```
+
+Then:
+
+```bash
+python <your-script-filename>.py
+```
+
+(Use the exact filename you already have in your repo.)
+
+---
+
+6️⃣ Developer’s Role
+
+As the developer, you have:
+
+* Designed a dynamic grid environment
+* Encoded cost-based terrain and obstacle behavior
+* Implemented the A* pathfinding logic
+* Integrated moving obstacles and dynamic updates
+* Created real-time visualization using Matplotlib
+* Handled collision detection or path blocking
+* Structured code into modular, readable functions
+
+ **Skills Demonstrated**
+
+* Heuristic search (A*)
+* Path planning in grid worlds
+* Handling dynamic obstacles in simulation
+* Data visualization and animation in Python
+* Real-time reactive system design
