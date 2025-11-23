@@ -1,12 +1,12 @@
-🚗🔍 A* Pathfinding & Motion Simulation on the Romania Map
-1️⃣ Objective
+ A* Pathfinding & Motion Simulation on the Romania Map
+1️. Objective
 
 The objective of this project is to develop an intelligent route-planning system that identifies the shortest path between cities using the A* search algorithm.
 Once the optimal route is found, the project simulates motion parameters such as velocity, acceleration, and rotation to show how a robot or autonomous vehicle might behave while traveling along that path.
 
 The project combines AI pathfinding and basic motion modeling to provide both an optimal route and a visual representation of movement dynamics.
 
-2️⃣ Environment
+2️. Environment
 
 The project is built in a Python environment and uses:
 
@@ -29,7 +29,7 @@ Optimal route discovery
 
 Motion behavior visualization
 
-3️⃣ Algorithm Used — A* Search
+3️. Algorithm Used — A* Search
 
 The A* algorithm is used to compute the shortest route between two cities.
 
@@ -63,7 +63,7 @@ An acceleration value
 A rotation rate (turning angle)
 These mimic physical movement and give each path segment unique motion behavior.
 
-4️⃣ Results
+4️. Results
 ✔️ Path Found
 
 The algorithm successfully finds the shortest path to Bucharest.
@@ -94,3 +94,18 @@ Acceleration patterns
 Turning behavior
 
 It provides a clear picture of simulated robot motion along the optimal route.
+
+6. How to Run This Project
+ ▶ Run in Google Colab (Recommended)
+1. Open the notebook in Google Colab  
+2. Click **Runtime → Run all**  
+3. All results (path, plots, motion graphs) will appear automatically  
+
+▶ Run Locally
+Requirements:
+- Python 3.x
+- numpy
+- matplotlib
+
+Run:
+
