@@ -101,11 +101,5 @@ It provides a clear picture of simulated robot motion along the optimal route.
 2. Click **Runtime → Run all**  
 3. All results (path, plots, motion graphs) will appear automatically  
 
-▶ Run Locally
-Requirements:
-- Python 3.x
-- numpy
-- matplotlib
 
-Run:
 
